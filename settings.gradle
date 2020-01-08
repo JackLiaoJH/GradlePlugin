@@ -1,0 +1,2 @@
+include ':app', ':PluginOne', ':ImgOptimizer'
+rootProject.name='GladlePluginApp'
