@@ -5,10 +5,10 @@ import org.gradle.api.Project
 import java.text.SimpleDateFormat
 
 class Logger {
-    private static final String LOG_FILE_NAME = "img_optimizer.log";
-    private static final String INFO = "info:  ";
-    private static final String WARN = "warn:  ";
-    private static final String ERROR = "error: ";
+    private static final String LOG_FILE_NAME = "img_optimizer.log"
+    private static final String INFO = "info:  "
+    private static final String WARN = "warn:  "
+    private static final String ERROR = "error: "
 
     private File file;
     private Writer writer;
@@ -27,7 +27,7 @@ class Logger {
             writer.write("----------------------------------------\r\n")
         } catch (Exception e) {
         } finally {
-            writer.close();
+            writer.close()
         }
     }
 

@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'beetle.modules'
 
 apply plugin: 'kotlin-android'
 
@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'one'
 apply plugin: 'img-optimiter'
+
 
 android {
     compileSdkVersion 29
@@ -30,8 +31,8 @@ android {
 // 压缩配置
 imgOptimizerOptions {
     triggerSize 1
-    level "lossLimit"
-    suffix "_opt"
+    level 2
+//    suffix "_2"
 }
 
 dependencies {
@@ -45,4 +46,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation project(path: ':libs:lib_base')
+    implementation project(path: ':libs:lib_image')
 }

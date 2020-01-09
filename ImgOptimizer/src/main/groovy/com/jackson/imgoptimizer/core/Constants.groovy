@@ -5,6 +5,6 @@ class Constants {
     public static final String IMG_OPTIMIZER_EXT_NAME = "imgOptimizerOptions"
 
 
-     public static final String LEVEL_LOSS_LIMIT = "lossLimit";
-     public static final String LEVEL_LOSSY = "lossy"
+    public static final def ZOP_FLI_PNG = "zopflipng"
+    public static final def PNG_QUANT = "pngquant"
 }

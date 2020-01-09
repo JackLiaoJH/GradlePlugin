@@ -11,6 +11,15 @@
             <option value="$PROJECT_DIR$/ImgOptimizer" />
             <option value="$PROJECT_DIR$/PluginOne" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/lib_base" />
+            <option value="$PROJECT_DIR$/libs/lib_image" />
+            <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/module_home" />
+            <option value="$PROJECT_DIR$/modules/module_search" />
+            <option value="$PROJECT_DIR$/modules/module_setting" />
+            <option value="$PROJECT_DIR$/plugins" />
+            <option value="$PROJECT_DIR$/plugins/Beetle" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

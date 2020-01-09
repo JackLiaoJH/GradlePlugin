@@ -2,14 +2,24 @@ package com.jackson.imgoptimizer.core.impl
 
 import com.jackson.imgoptimizer.core.Optimizer
 import com.jackson.imgoptimizer.utils.Logger
-import com.jackson.imgoptimizer.utils.PngquantUtils
+import com.jackson.imgoptimizer.utils.OptimizerLevel
 import org.gradle.api.Project
 
-class PngquantOptimizer implements Optimizer {
+/**
+ *
+ * desc: Pngquant压缩策略
+ * author: 行走的老者
+ * date: 2020-01-09 10:08
+ */
+class PngquantOptimizer extends Optimizer {
+
+    PngquantOptimizer(OptimizerLevel optimizerLevel) {
+        super(optimizerLevel)
+    }
 
     @Override
     void optimize(Project project, Logger log, String suffix, List<File> files) {
-        PngquantUtils.copyPngquant2BuildFolder(project)
+        copyCmd2BuildFolder(project)
         if (suffix == null || "" == suffix.trim()) {
             suffix = ".png"
         } else if (!suffix.endsWith(".png")) {
@@ -20,7 +30,8 @@ class PngquantOptimizer implements Optimizer {
         int skipped = 0
         int failed = 0
         long totalSaved = 0L
-        def pngquant = PngquantUtils.getPngquantFilePath(project)
+        def pngquant = getCmdPath(project)
+        println("begin start level=${mOptimizerLevel.level} optimizer ...")
         files.each { file ->
             long originalSize = file.length()
 
@@ -51,7 +62,9 @@ class PngquantOptimizer implements Optimizer {
             }
         }
 
-        log.i("Total: ${files.size()}, Succeed: ${succeed}, " +
-                "Skipped: ${skipped}, Failed: ${failed}, Saved: ${totalSaved / 1024}KB")
+        def resultLog = "Total: ${files.size()}, Succeed: ${succeed}, " +
+                "Skipped: ${skipped}, Failed: ${failed}, Saved: ${totalSaved / 1024}KB"
+        log.i(resultLog)
+        println(resultLog)
     }
 }

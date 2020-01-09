@@ -1,6 +1,7 @@
 package com.jackson.imgoptimizer.core.task
 
 import com.jackson.imgoptimizer.utils.Logger
+import com.jackson.imgoptimizer.utils.OptimizerLevel
 import groovy.io.FileType
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
@@ -20,7 +21,7 @@ class ImgOptimizerTask extends DefaultTask {
 
     @Input
     @Optional
-    String level
+    int level
 
     /**
      * 图片文件夹(drawable-xxx, mipmap-xxx)
@@ -33,7 +34,7 @@ class ImgOptimizerTask extends DefaultTask {
         log = new Logger(project)
         log.i("Task $name begin:")
         checkTriggerSize()
-        def optimizer = OptimizerFactory.getOptimizer(level)
+        def optimizer = OptimizerFactory.getOptimizer(OptimizerLevel.getOptimizerLevel(level))
         optimizer.optimize(project, log, suffix, checkFile())
         log.i("Task $name executed successfully.")
     }
