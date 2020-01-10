@@ -6,12 +6,12 @@ package com.jackson.beetle.ext
  * author: 行走的老者
  * date: 2020-01-09 16:47
  */
-class LibraryExt extends BaseExt {
+class ModuleExt extends BaseExt {
 
     boolean isRunAlone = false
-    String runAloneSuper
+    String dependence
 
-    LibraryExt(String name) {
+    ModuleExt(String name) {
         super(name)
     }
 
@@ -33,8 +33,8 @@ class LibraryExt extends BaseExt {
         this.applicationName = applicationName
     }
 
-    def runAloneSuper(String runAloneSuper) {
-        this.runAloneSuper = runAloneSuper
+    def dependence(String dependence) {
+        this.dependence = dependence
     }
 
     def mainActivity(String mainActivity) {
@@ -44,6 +44,6 @@ class LibraryExt extends BaseExt {
     @Override
     String toString() {
         return "name = $name, isRunAlone = $isRunAlone, applicationId = $applicationId, " +
-                "runAloneSuper = $runAloneSuper, mainActivity = $mainActivity"
+                "dependence = $dependence, mainActivity = $mainActivity"
     }
 }

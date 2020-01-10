@@ -8,4 +8,5 @@ package com.jackson.beetle.core
  */
 class Constants {
     public static final String BEETLE_EXTENSION_NAME = "beetle"
+    public static final String DEPENDS_IMPLEMENTATION = "implementation"
 }

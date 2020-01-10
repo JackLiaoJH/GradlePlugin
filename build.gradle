@@ -47,10 +47,13 @@ beetle {
         app {
             applicationId "com.jackson.gradleapp"
             mainActivity "com.jackson.module.home.MainActivity"
-            modules ':modules:module_search',
+            modules ':modules:module_search', // 这个是有在isRunAlone为true的是否生效
                     ':modules:module_home',
                     ':modules:module_setting'
+            versionCode 100
+            versionName "1.0.0"
         }
+
     }
 
     modules {
@@ -72,7 +75,7 @@ beetle {
             name ":modules:module_setting"
             applicationId "com.jackson.module.setting"
             mainActivity ".SettingsActivity"
-            isRunAlone true
+            isRunAlone false
         }
     }
 }

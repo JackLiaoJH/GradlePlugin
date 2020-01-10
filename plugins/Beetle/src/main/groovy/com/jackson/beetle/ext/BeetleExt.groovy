@@ -12,11 +12,11 @@ import org.gradle.api.Project
 class BeetleExt {
     boolean debugEnable = false
     NamedDomainObjectContainer<AppExt> apps
-    NamedDomainObjectContainer<LibraryExt> modules
+    NamedDomainObjectContainer<ModuleExt> modules
 
     BeetleExt(Project project) {
         apps = project.container(AppExt)
-        modules = project.container(LibraryExt)
+        modules = project.container(ModuleExt)
     }
 
     def debugEnable(boolean debugEnable) {

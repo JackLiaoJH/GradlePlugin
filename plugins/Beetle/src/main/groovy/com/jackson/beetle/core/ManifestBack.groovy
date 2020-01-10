@@ -6,8 +6,8 @@ import com.jackson.beetle.ext.BaseExt
 import com.jackson.beetle.ext.ModuleExt
 import groovy.util.slurpersupport.GPathResult
 import groovy.xml.StreamingMarkupBuilder
-import org.gradle.api.Project
 import groovy.xml.XmlUtil
+import org.gradle.api.Project
 
 /**
  *
@@ -15,14 +15,14 @@ import groovy.xml.XmlUtil
  * author: 行走的老者
  * date: 2020-01-09 17:30
  */
-abstract class Manifest {
+abstract class ManifestBack {
     protected String manifestPath
     protected GPathResult manifestXmlParse
     protected String outputGroupPath
     protected String outputManifestPath
     private Project project
 
-    Manifest(Project project) {
+    ManifestBack(Project project) {
         this.project = project
         manifestPath = "${project.getBuildFile().getParent()}/src/main/AndroidManifest.xml"
         outputGroupPath = "${project.getBuildFile().getParent()}/beetle"
@@ -43,24 +43,50 @@ abstract class Manifest {
         }
 
         boolean isFindMain = false
-
         if (moduleExt.mainActivity != null && !moduleExt.mainActivity.isEmpty()) {
+            // 设置mainActivity 为启动Activity
             manifestXmlParse.application.activity.each { activity ->
-                def filter = activity.'intent-filter'.find {
-                    it.action.@'android:name' == "android.intent.action.MAIN"
-                }
                 if (activity.@'android:name' == moduleExt.mainActivity) {
-                    // 设置module配置的mainActivity 为启动Activity
+                    def filter = activity.'intent-filter'.find {
+                        it.action.@'android:name' == "android.intent.action.MAIN"
+                    }
                     isFindMain = true
                     setMainIntentFilter(activity, filter != null && filter.size() > 0)
-                } else {
-                    // 移除非mainActivity的所有Activity的action:name="android.intent.action.MAIN"的intent-filter属性
-                    if (filter != null) {
-                        filter.replaceNode {}
-                    }
                 }
             }
         }
+
+        // 移除非mainActivity的所有Activity的intent-filter属性
+        manifestXmlParse.application.activity.each { activity ->
+            def filter = activity.'intent-filter'.find {
+                it.action.@'android:name' == "android.intent.action.MAIN"
+            }
+            if (filter != null
+                    && moduleExt.mainActivity != null
+                    && !moduleExt.mainActivity.isEmpty()
+                    && activity.@'android:name' != moduleExt.mainActivity) {
+                filter.replaceNode {}
+            }
+        }
+
+
+        /* if (moduleExt.mainActivity != null && !moduleExt.mainActivity.isEmpty()) {
+             manifestXmlParse.application.activity.each { activity ->
+                 def filter = activity.'intent-filter'.find {
+                     it.action.@'android:name' == "android.intent.action.MAIN"
+                 }
+                 if (activity.@'android:name' == moduleExt.mainActivity) {
+                     // 设置module配置的mainActivity 为启动Activity
+                     isFindMain = true
+                     setMainIntentFilter(activity, filter != null && filter.size() > 0)
+                 } else {
+                     // 移除非mainActivity的所有Activity的action:name="android.intent.action.MAIN"的intent-filter属性
+                     if (filter != null) {
+                         filter.replaceNode {}
+                     }
+                 }
+             }
+         }*/
 
         if (!isFindMain) {
             addMainActivity(manifestXmlParse.application, moduleExt)
@@ -110,7 +136,7 @@ abstract class Manifest {
         if (appPlugin instanceof AppPlugin) {
             appPlugin.extension.sourceSets {
                 main {
-                    manifest.srcFile(outputManifestPath)
+                    manifestXmlParse.srcFile(outputManifestPath)
                 }
             }
         }

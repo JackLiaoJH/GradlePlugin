@@ -3,7 +3,7 @@ package com.jackson.beetle
 import com.jackson.beetle.core.Constants
 import com.jackson.beetle.ext.AppExt
 import com.jackson.beetle.ext.BeetleExt
-import com.jackson.beetle.ext.LibraryExt
+import com.jackson.beetle.ext.ModuleExt
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -41,6 +41,7 @@ class BeetlePlugin implements Plugin<Project> {
 
     void initChildModules(List<String> moduleList, Project project) {
         if (project.childProjects.isEmpty()) {
+            // project.toString() = project ':modules:module_search'
             moduleList.add(project.toString()
                     .replace("project ", "")
                     .replace('\'', ''))
@@ -63,7 +64,7 @@ class BeetlePlugin implements Plugin<Project> {
             }
         }
 
-        Map<String, List<LibraryExt>> moduleGroupMap =
+        Map<String, List<ModuleExt>> moduleGroupMap =
                 beetleExt.modules.groupBy {
                     it.name.startsWith(':') ? it.name : new String(":" + it.name)
                 }
@@ -93,7 +94,7 @@ class BeetlePlugin implements Plugin<Project> {
                             String name = it.name.startsWith(':') ? it.name : new String(":" + it.name)
                             if (appNameList.contains(name)) {
                                 throw new IllegalArgumentException("$it.name already configured " +
-                                        "as an application, please check appConfig")
+                                        "as an application, please check beetle config")
                             }
                             name
                         }.collect()
@@ -109,16 +110,14 @@ class BeetlePlugin implements Plugin<Project> {
             }
         }
         if (notFoundList.size() > 0) {
-            throw new IllegalArgumentException(
-                    "not fount modules = " + notFoundList
-            )
+            throw new IllegalArgumentException("not fount modules = ${notFoundList}, please check !")
         }
 
         beetleExt.apps.stream().forEach { app ->
             app.modules.stream().forEach {
                 if (!configSet.contains(it)) {
                     throw new IllegalArgumentException(
-                            "appConfig error , can not find $app.name modules $it by project")
+                            "beetle config error , can not find $app.name modules $it by project")
                 }
             }
         }

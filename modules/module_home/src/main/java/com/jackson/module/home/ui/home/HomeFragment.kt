@@ -3,6 +3,7 @@ package com.jackson.module.home.ui.home
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +30,11 @@ class HomeFragment : Fragment() {
             textView.text = it
         })
 
+        val pi = context?.packageManager?.getPackageInfo(context?.packageName, 0)
+        Log.i("liao", "versionName=${pi?.versionName},versionCode=${pi?.versionCode}")
+
         textView.setOnClickListener {
-            val intent = Intent()
+            val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("jackson://search")
             startActivity(intent)
         }

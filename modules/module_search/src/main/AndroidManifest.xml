@@ -12,10 +12,10 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <data
-                    android:host="jackson"
-                    android:scheme="search" />
-                <action android:name="android.intent.action.MAIN" />
-
+                    android:host="search"
+                    android:scheme="jackson" />
+                <!--  <action android:name="android.intent.action.MAIN" />-->
+                <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

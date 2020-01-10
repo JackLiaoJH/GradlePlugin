@@ -18,9 +18,7 @@ class AppManifest extends Manifest {
     @Override
     void setApplication(Object application, BaseExt baseExt) {
         if (baseExt.applicationName == null || baseExt.applicationName.isEmpty()) {
-            application.each {
-                it.attributes().remove("android:name")
-            }
+            application.each { it.attributes().remove("android:name") }
             return
         }
         if (application.@'android:name' == null ||
@@ -35,6 +33,15 @@ class AppManifest extends Manifest {
             activity.appendNode {
                 'intent-filter' {
                     action('android:name': "android.intent.action.MAIN")
+                    category('android:name': "android.intent.category.LAUNCHER")
+                }
+            }
+        } else {
+            def filter = activity.'intent-filter'.find {
+                it.category.@'android:name' == "android.intent.category.LAUNCHER"
+            }
+            if (filter == null || filter.size() == 0) {
+                activity.'intent-filter'.appendNode {
                     category('android:name': "android.intent.category.LAUNCHER")
                 }
             }

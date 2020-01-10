@@ -1,5 +1,7 @@
 package com.jackson.beetle.ext
 
+import com.jackson.beetle.core.Constants
+
 /**
  *
  * desc:  App 配置
@@ -7,8 +9,10 @@ package com.jackson.beetle.ext
  * date: 2020-01-09 16:48
  */
 class AppExt extends BaseExt {
-    String dependMethod = "implementation"
+    String dependMethod = Constants.DEPENDS_IMPLEMENTATION
     List<String> modules = new ArrayList<>()
+    int versionCode
+    String versionName
 
     AppExt(String name) {
         super(name)
@@ -38,10 +42,20 @@ class AppExt extends BaseExt {
         this.modules.addAll(modules)
     }
 
+    def versionCode(int versionCode) {
+        this.versionCode = versionCode
+    }
+
+    def versionName(String versionName) {
+        this.versionName = versionName
+    }
+
     @Override
     String toString() {
         return "app = $name, applicationId = $applicationId, " +
                 "${applicationName.isEmpty() ? "" : "application = $applicationName,"}" +
+                ", versionCode=" + versionCode +
+                ", versionName='" + versionName +
                 " dependMethod = $dependMethod\n" +
                 "modules: ${modules.isEmpty() ? "is empty" : "$modules"}"
     }
