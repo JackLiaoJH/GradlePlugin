@@ -1,6 +1,8 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
 
+apply plugin: 'com.novoda.bintray-release'
+
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
@@ -14,16 +16,27 @@ repositories {
     google()
     mavenCentral()
 }
-group = 'com.jackson'
-version = '1.0.0'
+//group = 'com.jackson'
+//version = '1.0.0'
 
 // 发布到本地仓库
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: uri('../../repo'))
-        }
-    }
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository(url: uri('../../repo'))
+//        }
+//    }
+//}
+
+
+publish {
+    userOrg = 'jiahui'
+    repoName = 'jiahui'
+    groupId = 'com.jackson'
+    artifactId = 'Beetle'
+    publishVersion = '1.0.0'
+    desc = '模块化配置运行插件。'
+    website = 'https://github.com/JackLiaoJH/GradlePlugin'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

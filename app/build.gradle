@@ -1,13 +1,13 @@
 apply plugin: 'beetle.modules'
-//apply plugin: 'com.android.application'
+// apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
 
-apply plugin: 'one'
-apply plugin: 'img-optimiter'
+// apply plugin: 'one'
+// apply plugin: 'img-optimiter'
 
 
 android {
@@ -29,11 +29,11 @@ android {
 }
 
 // 压缩配置
-imgOptimizerOptions {
-    triggerSize 1
-    level 2
-//    suffix "_2"
-}
+// imgOptimizerOptions {
+//     triggerSize 1
+//     level 2
+// //    suffix "_2"
+// }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

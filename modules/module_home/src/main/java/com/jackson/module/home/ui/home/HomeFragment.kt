@@ -2,6 +2,7 @@ package com.jackson.module.home.ui.home
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,8 +31,12 @@ class HomeFragment : Fragment() {
             textView.text = it
         })
 
-        val pi = context?.packageManager?.getPackageInfo(context?.packageName, 0)
-        Log.i("liao", "versionName=${pi?.versionName},versionCode=${pi?.versionCode}")
+        val pi = context?.packageManager?.getPackageInfo(context?.packageName!!, 0)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            Log.i("liao", "versionName=${pi?.versionName},versionCode=${pi?.longVersionCode}")
+        } else {
+//            Log.i("liao", "versionName=${pi?.versionName},versionCode=${pi?.versionCode}")
+        }
 
         textView.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
