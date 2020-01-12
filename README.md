@@ -3,6 +3,7 @@ Android developer plugin tools.
 
 
 ## 模块化运行插件Beetle
+[ ![Download](https://api.bintray.com/packages/jiahui/jiahui/Beetle/images/download.svg?version=1.0.0) ](https://bintray.com/jiahui/jiahui/Beetle/1.0.0/link)
 
 Beetle是一款Android模块化运行配置插件，可以灵活配置各个模块的单独运行，相比原有的直接修改build.gradle更直观，更灵活，与传统模块化配置区别可查看该文章<>,具体的使用配置如下：
 
@@ -11,7 +12,20 @@ Beetle是一款Android模块化运行配置插件，可以灵活配置各个模�
 
 ```gradle
 // 引入
-
+buildscript {
+    ext.kotlin_version = '1.3.50'
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        
+        classpath "com.jackson:Beetle:1.0.0"
+    }
+}
 
 // beetle 配置
  apply plugin: 'beetle.config'
