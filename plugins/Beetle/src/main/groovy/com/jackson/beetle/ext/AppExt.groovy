@@ -53,10 +53,10 @@ class AppExt extends BaseExt {
     @Override
     String toString() {
         return "app = $name, applicationId = $applicationId, " +
-                "${applicationName.isEmpty() ? "" : "application = $applicationName,"}" +
+                "${(applicationName == null || applicationName.isEmpty()) ? "" : "application = $applicationName,"}" +
                 ", versionCode=" + versionCode +
                 ", versionName='" + versionName +
                 " dependMethod = $dependMethod\n" +
-                "modules: ${modules.isEmpty() ? "is empty" : "$modules"}"
+                "             modules: ${modules.isEmpty() ? "is empty" : "$modules"}"
     }
 }

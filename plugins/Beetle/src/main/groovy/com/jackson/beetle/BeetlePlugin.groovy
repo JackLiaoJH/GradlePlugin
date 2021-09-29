@@ -59,6 +59,7 @@ class BeetlePlugin implements Plugin<Project> {
                     it.name.startsWith(':') ? it.name : new String(":" + it.name)
                 }
         appGroupMap.forEach { k, v ->
+            println("App Config: {k=$k,v=$v}")
             if (v.size() > 1) {
                 throw new IllegalArgumentException("app=$k is repeat, please check !")
             }
@@ -69,6 +70,7 @@ class BeetlePlugin implements Plugin<Project> {
                     it.name.startsWith(':') ? it.name : new String(":" + it.name)
                 }
         moduleGroupMap.forEach { k, v ->
+            println("Module config: {$k,v=$v}")
             if (v.size() > 1) {
                 throw new IllegalArgumentException("module=$k is repeat, please check !")
             }
@@ -89,15 +91,15 @@ class BeetlePlugin implements Plugin<Project> {
                 .collect()
 
         List<String> moduleNameList = beetleExt.modules.
-                        stream()
-                        .map {
-                            String name = it.name.startsWith(':') ? it.name : new String(":" + it.name)
-                            if (appNameList.contains(name)) {
-                                throw new IllegalArgumentException("$it.name already configured " +
-                                        "as an application, please check beetle config")
-                            }
-                            name
-                        }.collect()
+                stream()
+                .map {
+                    String name = it.name.startsWith(':') ? it.name : new String(":" + it.name)
+                    if (appNameList.contains(name)) {
+                        throw new IllegalArgumentException("$it.name already configured " +
+                                "as an application, please check beetle config !")
+                    }
+                    name
+                }.collect()
 
         println "moduleNameList = $moduleNameList"
 

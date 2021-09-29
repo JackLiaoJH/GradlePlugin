@@ -39,7 +39,7 @@ class ModulesPlugin implements Plugin<Project> {
                     (it.name.startsWith(':') ? it.name : new String(":" + it.name)).endsWith(project.name)
                 }
                 .collect()
-
+        println("appExtList>>>>> $appExtList")
         if (appExtList != null && appExtList.size() > 0) {
             AppExt appExt = appExtList.get(0)
             AppPlugin appPlugin = project.plugins.apply(AppPlugin)
@@ -56,7 +56,7 @@ class ModulesPlugin implements Plugin<Project> {
         appPlugin.extension.defaultConfig.setVersionCode(
                 appExt.versionCode > 0 ? appExt.versionCode : appPlugin.extension.defaultConfig.versionCode)
         appPlugin.extension.defaultConfig.setVersionName(
-                (appExt.versionName != null && !appExt.versionName.isEmpty() ? appExt.versionName :
+                ((appExt.versionName != null && !appExt.versionName.isEmpty()) ? appExt.versionName :
                         appPlugin.extension.defaultConfig.versionName)
         )
     }

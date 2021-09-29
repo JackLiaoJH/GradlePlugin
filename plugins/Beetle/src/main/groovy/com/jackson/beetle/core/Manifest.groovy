@@ -29,7 +29,7 @@ abstract class Manifest {
         outputManifestPath = "${project.getBuildFile().getParent()}/beetle/AndroidManifest.xml"
         File manifestFile = new File(manifestPath)
         if (!manifestFile.getParentFile().exists() && !manifestFile.getParentFile().mkdirs()) {
-            println "Unable to find AndroidManifest and create fail, please manually create"
+            println "Unable to find AndroidManifest and create fail, please manually create !"
         }
         manifestXmlParse = new XmlSlurper(false, false).parse(manifestFile)
     }
@@ -84,7 +84,7 @@ abstract class Manifest {
     }
 
     void buildModulesManifest(def manifestFile, BaseExt moduleExt, BasePlugin appPlugin, boolean isDebug) {
-        println ":${moduleExt.name}cleanBuildModulesManifest"
+        println ":${moduleExt.name}  cleanBuildModulesManifest"
         def outputGroupFile = new File(outputGroupPath)
         if (outputGroupFile.exists()) {
             outputGroupFile.deleteDir()
@@ -93,7 +93,7 @@ abstract class Manifest {
             return
         }
 
-        println ":${moduleExt.name}buildModulesManifest"
+        println ":${moduleExt.name}  buildModulesManifest"
         outputGroupFile = new File(outputGroupPath)
         if (!outputGroupFile.exists()) {
             outputGroupFile.mkdirs()

@@ -1,5 +1,11 @@
-include ':app', ':PluginOne', ':ImgOptimizer',
-        ':libs:lib_base', ':libs:lib_image',
-        ':modules:module_home', ':modules:module_setting', ':modules:module_search',
+include ':app',
+        ':PluginOne',
+        ':ImgOptimizer',
+        ':libs:lib_base',
+        ':libs:lib_image',
+        ':modules:module_home',
+        ':modules:module_setting',
+        ':modules:module_search',
         ':plugins:Beetle'
 rootProject.name = 'GladlePluginApp'
+include ':app2'
