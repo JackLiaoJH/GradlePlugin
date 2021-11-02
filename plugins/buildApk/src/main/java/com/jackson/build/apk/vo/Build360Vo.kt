@@ -6,9 +6,9 @@ package com.jackson.build.apk.vo
  * @description: 360 加固配置
  */
 open class Build360Vo {
-    val enable: Boolean = false
-    val account: String? = null
-    val password: String? = null
+    var enable: Boolean = false
+    var account: String? = null
+    var password: String? = null
 
 
     override fun toString(): String {

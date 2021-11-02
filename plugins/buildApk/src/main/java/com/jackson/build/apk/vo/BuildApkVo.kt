@@ -1,5 +1,8 @@
 package com.jackson.build.apk.vo
 
+import groovy.lang.Closure
+import org.gradle.api.Action
+
 /**
  * @author: jackson liao
  * @createDate: 2021/11/2 11:19
@@ -9,14 +12,28 @@ open class BuildApkVo(/*project: Project*/) {
     var debugEnable: Boolean = false
     var enable: Boolean = false
 
-//    var debugSign: SignApkVo? = null
-    var build360: Build360Vo? = null
+    //    var debugSign: SignApkVo? = null
+    var build360: Build360Vo = Build360Vo()
 
-//    val debugSign: NamedDomainObjectContainer<SignApkVo>? = project.container(SignApkVo::class.java)
+    // https://www.jianshu.com/p/58d86b4c0ee5
+    //    val debugSign: NamedDomainObjectContainer<SignApkVo>? = project.container(SignApkVo::class.java)
 //    val releaseSign: NamedDomainObjectContainer<SignApkVo>? =
 //        project.container(SignApkVo::class.java)
-//    val build360: NamedDomainObjectContainer<Build360Vo>? =
-//        project.container(Build360Vo::class.java)
+//    val build360: NamedDomainObjectContainer<Build360Vo>? = null
+//
+//    fun build360(action: Action<NamedDomainObjectContainer<Build360Vo>>) {
+//        if (this.build360 == null) return
+//        action.execute(this.build360)
+//    }
+
+    fun build360(action: Action<Build360Vo>) {
+//        if (this.build360 == null) return
+        action.execute(build360)
+    }
+
+//    fun build360(c:Closure) {
+//
+//    }
 }
 
 /**
@@ -24,11 +41,11 @@ open class BuildApkVo(/*project: Project*/) {
  */
 open class SignApkVo(
     /**签名pwd*/
-    val signPassword: String,
+    var signPassword: String,
     /**签名别名key*/
-    val signKeyAlias: String,
+    var signKeyAlias: String,
     /**签名别名密码*/
-    val signKeyPwd: String,
+    var signKeyPwd: String,
     /**签名文件路径*/
-    val signPath: String
+    var signPath: String
 )
