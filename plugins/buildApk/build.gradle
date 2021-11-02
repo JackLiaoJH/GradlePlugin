@@ -1,0 +1,58 @@
+plugins {
+//    id 'java-library'
+    id 'java'
+    id 'kotlin'
+    id 'kotlin-kapt'
+    id 'maven'
+    id 'com.novoda.bintray-release'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    jcenter()
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:3.5.3'
+    implementation 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20'
+}
+
+group = 'com.jackson'
+version = '1.0.0'
+
+// 发布到本地仓库
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../../repo'))
+        }
+    }
+}
+
+
+publish {
+    userOrg = 'jiahui'
+    repoName = 'jiahui'
+    groupId = 'com.jackson'
+    artifactId = 'buildApk'
+    publishVersion = '1.0.0'
+    desc = '自动化打包插件：360加固+walle多渠道打包'
+    website = 'https://github.com/JackLiaoJH/GradlePlugin'
+}

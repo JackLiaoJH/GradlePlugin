@@ -20,6 +20,7 @@ buildscript {
         // classpath "com.zs:PluginOne:1.0.1"
         // classpath "com.jackson:ImgOptimizer:1.0.4"
         classpath "com.jackson:Beetle:1.0.1"
+        classpath "com.jackson:buildApk:1.0.0"
     }
 }
 
@@ -44,6 +45,26 @@ task clean(type: Delete) {
 
 
 apply plugin: 'beetle.config'
+//apply plugin: 'com.jsckson.build.apk'
+//buildApk {
+//    debugSign {
+//        signPassword ""
+//        signKeyAlias ""
+//        signKeyPwd ""
+//        signPath ""
+//    }
+//    realeaseSign {
+//        signPassword ""
+//        signKeyAlias ""
+//        signKeyPwd ""
+//        signPath ""
+//    }
+//    build360 {
+//        enable true
+//        account "360name"
+//        password "360pwd"
+//    }
+//}
 
 beetle {
     debugEnable true

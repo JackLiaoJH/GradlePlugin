@@ -26,6 +26,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 // 压缩配置
@@ -48,4 +53,29 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation project(path: ':libs:lib_base')
     implementation project(path: ':libs:lib_image')
+}
+
+
+apply plugin: 'com.jsckson.build.apk'
+
+buildApk {
+    debugEnable true
+    enable true
+//    debugSign {
+//        signPassword = ""
+//        signKeyAlias = ""
+//        signKeyPwd = ""
+//        signPath = ""
+//    }
+//    releaseSign {
+//        signPassword = ""
+//        signKeyAlias = ""
+//        signKeyPwd = ""
+//        signPath = ""
+//    }
+//    build360 {
+//        enable = true
+//        account = "360name"
+//        password = "360pwd"
+//    }
 }
