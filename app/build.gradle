@@ -9,6 +9,27 @@ apply plugin: 'kotlin-android-extensions'
 // apply plugin: 'one'
 // apply plugin: 'img-optimiter'
 
+apply plugin: 'com.jsckson.build.apk'
+
+buildApk {
+    debugEnable true
+    enable true
+
+    build360 {
+        enable = true
+        account = "360name"
+        password = "360pwd"
+        jarPath = "E:\\work\\tools\\360jiagubao_windows_64\\jiagu\\jiagu.jar"
+    }
+
+    buildChannel {
+        enable = true
+        jarPath = "E:\\work\\tools\\360jiagubao_windows_64\\walle-cli-all.jar"
+        channelPath = "E:\\work\\tools\\360jiagubao_windows_64\\channel_test"
+        outPutPath = "D:\\channel"
+    }
+}
+
 
 android {
     compileSdkVersion 29
@@ -20,10 +41,21 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            keyAlias "jackson"
+            keyPassword "a123456"
+            storeFile file("demo1.jks")
+            storePassword "123456"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -56,26 +88,3 @@ dependencies {
 }
 
 
-apply plugin: 'com.jsckson.build.apk'
-
-buildApk {
-    debugEnable true
-    enable true
-//    debugSign {
-//        signPassword = ""
-//        signKeyAlias = ""
-//        signKeyPwd = ""
-//        signPath = ""
-//    }
-//    releaseSign {
-//        signPassword = ""
-//        signKeyAlias = ""
-//        signKeyPwd = ""
-//        signPath = ""
-//    }
-//    build360 {
-//        enable = true
-//        account = "360name"
-//        password = "360pwd"
-//    }
-}

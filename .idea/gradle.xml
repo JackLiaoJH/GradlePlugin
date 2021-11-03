@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -11,6 +13,7 @@
             <option value="$PROJECT_DIR$/ImgOptimizer" />
             <option value="$PROJECT_DIR$/PluginOne" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app2" />
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/lib_base" />
             <option value="$PROJECT_DIR$/libs/lib_image" />
@@ -20,10 +23,10 @@
             <option value="$PROJECT_DIR$/modules/module_setting" />
             <option value="$PROJECT_DIR$/plugins" />
             <option value="$PROJECT_DIR$/plugins/Beetle" />
+            <option value="$PROJECT_DIR$/plugins/buildApk" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>
